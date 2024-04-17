@@ -1,0 +1,36 @@
+            -----      Code Explanation     ----- 
+
+1. **Import Statements**:
+   - `import java.util.ArrayList;`, `import java.util.HashSet;`, `import java.util.List;`, `import java.util.Set;`: 
+        These statements import the necessary classes from `java.util` for working with lists, sets, and arrays.
+
+2. **Main Class**:
+   - `private Set<Integer> column;`, `private Set<Integer> posDiagonal;`, `private Set<Integer> negDiagonal;`, `private List<List<String>> res;`, `private char[][] board;`: 
+        These are instance variables of the `Main` class. 
+        They are declared private to encapsulate them within the class.
+   - `solveNQueens(int n)`: 
+        This method is called to solve the N-Queens problem for a given value of `n`. 
+        It initializes the instance variables and then calls the `backtrack` method to find solutions.
+   - `backtrack(int r, int n)`: 
+        This is a recursive backtracking method that explores all possible queen placements on the chessboard. 
+        It takes the current row `r` and the board size `n` as parameters.
+
+3. **solveNQueens Method**:
+   - Initializes `column`, `posDiagonal`, `negDiagonal`, `res`, and `board` with new instances of `HashSet`, `ArrayList`, and `char[][]` respectively.
+   - Populates the `board` with dots (`.`) to represent empty cells.
+   - Calls the `backtrack` method with initial parameters.
+
+4. **backtrack Method**:
+   - Base Case (`if (r == n)`): If the current row equals the board size (`n`), it means all queens are placed successfully. 
+        The current board configuration is added to the result list `res`.
+   - Iterates through each column (`c`) in the current row (`r`).
+   - Checks if placing a queen at `(r, c)` would conflict with existing queens using `column`, `posDiagonal`, and `negDiagonal` sets. 
+        If there's a conflict, it skips to the next column.
+   - If no conflict, marks the column and diagonals as occupied, places a queen on the board at `(r, c)`, and recursively calls `backtrack` for the next row (`r + 1`).
+   - After the recursive call returns, removes the queen from `(r, c)` on the board and marks the column and diagonals as unoccupied to backtrack and explore other possibilities.
+
+5. **main Method**:
+   - Creates an instance of `NQueensSolver`.
+   - Calls `solveNQueens` with a specific value of `n` (here, `n = 4` for demonstration).
+   - Prints each solution to the console.
+
