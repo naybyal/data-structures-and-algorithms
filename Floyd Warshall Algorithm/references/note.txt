@@ -1,0 +1,31 @@
+--Explanation--
+
+Matrix Initialization (Adjacency Matrix):
+    - The code starts by initializing a 2D array dist to represent the distances between nodes (cities) in the graph. 
+    - dist[i][j] stores the shortest distance between node i and node j. 
+    - Initially, all distances are set to a large value (here, 1000000) except for dist[i][i] which is set to 0 since the distance from a node to itself is 0.
+
+Edge Processing:
+    - It then processes the input edges, updating the distances in the dist matrix based on the weights of the edges. 
+    - If there is an edge between nodes src and dst with weight wt, it sets dist[src][dst] and dist[dst][src] to wt.
+
+Floyd-Warshall Algorithm:
+    - The Floyd-Warshall algorithm is applied next. 
+    - This algorithm is used to find the shortest paths in a weighted graph. 
+    - It iteratively considers all vertices as intermediate vertices and tries to minimize the distances between every pair of vertices.
+
+City Selection:
+    - After computing all-pairs shortest paths, the code then determines the city with the minimum number of reachable cities within a given distance dT. It iterates through each city (i), counts the number of cities it can reach within distance dT, and updates min_city and max_val accordingly.
+
+Return Result:
+    - Finally, the code returns the city (min_city) with the minimum number of reachable cities within distance dT.
+
+-----------------------------------------------------------------------------------------------------------------
+
+The pattern includes:
+    - Initializing the distance matrix.
+    - Updating distances based on edge weights.
+    - Applying the Floyd-Warshall algorithm to compute all-pairs shortest paths.
+    - Analyzing the results to find the desired city based on specific criteria (count of reachable cities within distance dT in this case).
+
+
