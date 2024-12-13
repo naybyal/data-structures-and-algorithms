@@ -34,3 +34,22 @@
    - Calls `solveNQueens` with a specific value of `n` (here, `n = 4` for demonstration).
    - Prints each solution to the console.
 
+
+
+
+Notes on backtracking
+
+    - Method of solving a problem by making a series of choices that we can return or backtrack to.
+    
+    - `Like when we lose our key, we try to think of all the places we have been to 
+        where we could probably have lost it`.
+    
+    - The call stack "remembers" our choices and "knows" what to choose next.
+
+
+    - Backtracking is used when we have multiple solutions and we want 
+      all of those solutions
+
+    - We represent the solution in the form of STATE SPACE there
+
+    - 
