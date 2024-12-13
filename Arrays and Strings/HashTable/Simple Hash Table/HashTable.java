@@ -2,7 +2,7 @@ import java.util.LinkedList;
 
 class HashTable {
 
-    // Define the size of the hash table (array length)
+    // Define the size of the hash table (array_length)
     private static final int SIZE = 10;
 
     // Inner class to store key-value pairs
@@ -29,7 +29,7 @@ class HashTable {
 
     // Hash function to compute the index
     private int hash(int key) {
-        return key % SIZE; // Simple modulo operation to get index
+        return key % SIZE; // hash(key) % array_length
     }
 
     // Insert key-value pair into the hash table
@@ -61,8 +61,7 @@ class HashTable {
         }
         return null; // If key doesn't exist
     }
-
-    // Print the hash table (for debugging purposes)
+    
     public void printTable() {
         for (int i = 0; i < SIZE; i++) {
             if (table[i].size() > 0) {
