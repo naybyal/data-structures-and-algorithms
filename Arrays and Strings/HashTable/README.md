@@ -1,6 +1,6 @@
 It's Friday the 13th, and I have decided to seriously explore data structures and algorithms, starting today. I am not driven by the desire to get placed in big tech but rather, I am on a pursuit to become a better developer who can understand the internals of  operating systems, databases and everything low-level.
 
-I have decided to tackle arrays and strings by the end of the day, using Java as the programming language. This will not be basic, as I already know the fundamentals of arrays and strings. This time, I want to take things up a notch by solving more problems to deepen my understanding and improve my implementation of concepts like StringBuilder, HashMap, and others.
+I have decided to tackle arrays and strings first, using Java as the programming language. This will not be basic, as I already know the fundamentals of arrays and strings. This time, I want to take things up a notch by solving more problems to deepen my understanding and improve my implementation of concepts like StringBuilder, HashMap, and others.
 
  Well, I would like to start with hash tables. 
  
@@ -21,7 +21,15 @@ By 'synchronized', I mean that multiple threads can access and modify the data s
 Now, back to why I wrote 'HashMap' instead of 'HashTable'. When you first start programming in Java, the code you write is typically non-concurrent (single-threaded). Also, HashMap was introduced after Java 1.2, and since I program in Java 17, I’m so accustomed to using HashMap over HashTable that I don't always consider the performance implications or the distinct differences between the two data structures.
 
 Alright, let's get back to Hash Tables!
+"Wait a minute, Nabiel. You said you were going to start with hash tables!"
 
+Allow me to explain. From what I've understood, HashTable and HashMap in Java differ in the following ways:
+
+1. HashTable is synchronized, which makes it better suited for multithreaded applications.
+
+'What do you mean by "synchronized?"'
+
+By 'synchronized', I mean that multip
 Even though there are a number of ways to implement a hash table. The simplest implementation is to use an array of linked lists and a hash code function. 
 
 To insert a key-value pair to the hash table, we do the following:
