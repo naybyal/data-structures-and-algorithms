@@ -1,0 +1,60 @@
+Q. Create a data structure that efficiently supports the stack
+operations (push and pop) and also return the maximum operation.
+Assume the elements are real numbers so that you can compare them.
+
+ANSWER
+-------
+
+Let the operations be:
+  push(x) ->  insert an element onto the stack
+  pop()   ->  remove and return the element at the stack top
+  max()   ->  return the maximum element in the stack
+
+The most efficient approach to do this is to have 2 stacks:
+  the main stack: to store all elements
+  the max stack : keeps track of the maximum value at each level.
+
+So, everytime we push a value onto the main stack, and if the value
+is greater than or equal to the current maximum value, we push the 
+value onto to the max stack as well.
+
+SOLUTION IN JAVA
+-----------------
+
+class MaxStack {
+
+  private Stack<Double> stack, maxStack;
+
+  public MaxStack() {
+      stack = new Stack<>();
+      maxStack = new Stack<>();
+  }
+
+  //  push operation 
+  public void push(double value) {
+    stack.push(value);
+    if (maxStack.isEmpty() || value >= maxStack.peek()) {
+      maxStack.push(value);
+    }
+  }
+
+  //  pop operation
+  public double pop() {
+    if (stack.isEmpty()) {
+      throw new IllegalStateException("Stack is empty.");
+    }  
+
+    double poppedValue = stack.pop();
+    if (poppedValue == maxStack.pop()) 
+      maxStack.pop();
+
+    return poppedValue;
+  }
+
+  // max operation
+  public double max() {
+      if (maxStack.isEmpty())
+        return IllegalStateException("Stack is empty.");
+      return maxStack.peek();
+    }
+}

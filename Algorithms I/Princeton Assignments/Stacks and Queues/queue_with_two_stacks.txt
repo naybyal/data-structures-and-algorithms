@@ -1,0 +1,60 @@
+Q. Implement a queue with two stacks so that each queue operations takes a constant amortized number of stack operations.
+
+Answer
+---------
+
+Let there be two stacks: stack1 and stack2. It so is the case that each queue operation takes O(1) amortized time and for that, 
+we need to implement LAZY TRANSFER : elements are only moved from stack1 to stack2
+when stack2 is empty.
+
+Approach: 
+	ENQUEUE: Always push elements onto stack1 
+	DEQUEUE: 
+		if stack2 is empty
+			transfer all elements from stack1 to stack2
+			pop from stack2
+			
+Solution in Java:
+
+class QueueWithTwoStacks<T> {
+	private Stack<T> stack1, stack2;
+	public QueueWithTwoStack() {
+		stack1 = new Stack<>();
+		stack2 = new Stack<>();
+	} 
+	
+	public void enqueue(T item) {
+		stack1.push(item);
+	}
+	
+	public T dequeue() {
+		if (isEmpty()) {
+			throw new IllegalStateException("Queue is empty.");
+		}
+		
+		if (stack2.isEmpty()) {
+			while (!stack1.isEmpty()) {
+				stack2.push(stack1.pop());
+			}
+		}
+		
+		return stack2.pop();
+	}
+	
+	public boolean isEmpty() {
+		return stack1.isEmpty() && stack2.isEmpty();
+	}
+	
+	public T peek() {
+		if (isEmpty()) {
+			throw new IllegalStateException("Queue is empty.");
+		}
+		
+		if (stack2.isEmpty()) {
+			while (!stack1.isEmpty()) {
+				stack2.push(stack1.pop());
+			}
+		}
+		return stack2.peek();	
+	}
+}

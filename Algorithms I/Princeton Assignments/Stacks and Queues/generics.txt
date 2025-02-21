@@ -1,0 +1,62 @@
+Explain why Java prohibits generic array creation.
+
+It is due to type erasure and heap pollution risks. 
+
+In Java, generics are implemented using type erasure (i.e., generic type information is removed at runtime) inorder to maintain backward compatibility. 
+
+List<Integer> list1 = new ArrayList<>();
+List<String> list2 = new ArrayList<>();
+System.out.println(list1.getClass() == list2.getClass());
+
+The output of the above shall be true as both are just ArrayList and the type parameters (Integer, String) are erased. 
+
+T[] array = new T[10];
+
+The above line of code will lead to compilation error as "T" is erased at runtime and JRE cannot allocate memory for T[] safely.
+
+Heap pollution occurs when a variable of a parameterized type refers to an object that does not match its type.
+
+Object[] objArray = new Integer[10]; 
+objArray[0] = "Hello";
+
+Java allows the above to run because Object[] can hold any type, but the problem is that, during runtime the above lines of code will lead to ClassCastException.
+
+Suppose, Java allowed the following:
+T[] genericArray = new T[5];
+Object[] obj = genericArray;
+obj[0] = "Princeton";
+
+The generic array creation would lead to compilation error but the object  array initialization at 0th index will not cause any compile-time error but will break type safety as obj[0] should be of type "T" but it gets "Hello". This is heap pollution and it destroys type safety.
+
+Also, in Java, arrays are covariant. This means that a subtype array can be 
+assigned to a subtype array.
+
+String[] strArray = new String[5];
+Object[] objArray = strArray;  // ✅ Allowed (covariance)
+objArray[0] = 42; // ❌ Runtime error (ArrayStoreException)
+
+This is beacuse String[] is considered a subtype of Object[]. 
+
+At compile-time, the code looks fine. 
+At runtime,
+	objArray[0] = 42;
+tries to store an Integer in a String[], leading to an ArrayStoreException.
+
+Covariant arrays are type-unsafe. Java allows it, but it enforces runtime checks
+to prevent type mismatches.
+
+
+As compared to arrays, generics are rather INVARIANT.
+Stack<String> stringStack = new Stack<>();
+Stack<Object> objectStack = stringStack; // ❌ Compilation error!
+
+Stack<String> is not a subtype of Stack<Object>.
+
+Java prohibits this because it prevents type safety violations like below:
+objectStack.push(42);  // If allowed, an Integer is pushed
+String s = stringStack.pop(); // ❌ Type mismatch at runtime!
+
+Why does Java allow covariant arrays but not generics?
+Arrays are built into Java’s type system and enforce runtime type checks.
+Generics use type erasure, so type mismatches can’t be detected at runtime.
+
