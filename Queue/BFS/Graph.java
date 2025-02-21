@@ -18,21 +18,20 @@ class Graph {
         adjList[source].add(destination);
     }
 
-    // Perform Breadth-First Search starting from a given vertex
     void BFS(int startVertex) {
-        boolean[] visited = new boolean[vertices]; // Track visited vertices
-        Queue<Integer> queue = new LinkedList<>(); // Use Queue interface with LinkedList
+        boolean[] visited = new boolean[vertices];
+        Queue<Integer> queue = new LinkedList<>(); 
 
         // Mark the start vertex as visited and enqueue it
         visited[startVertex] = true;
         queue.add(startVertex);
 
-        // Continue until the queue is empty
+        // until the queue is empty, do
         while (!queue.isEmpty()) {
             int vertex = queue.poll(); // Dequeue a vertex
-            System.out.print(vertex + " "); // Print the visited vertex
+            System.out.print(vertex + " "); 
 
-            // Enqueue all adjacent vertices that haven't been visited
+            // Enqueue all adjacent vertices (neighbours) that haven't been visited
             for (int adjVertex : adjList[vertex]) {
                 if (!visited[adjVertex]) {
                     visited[adjVertex] = true;
@@ -44,7 +43,7 @@ class Graph {
 
     public static void main(String[] args) {
         Graph graph = new Graph(6); 
-        
+
         graph.addEdge(0, 1);
         graph.addEdge(0, 2);
         graph.addEdge(1, 3);
@@ -53,7 +52,6 @@ class Graph {
         graph.addEdge(3, 5);
         graph.addEdge(4, 5);
 
-        // Perform BFS starting from vertex 0
         System.out.println("Breadth First Traversal starting from vertex 0:");
         graph.BFS(0);
     }
