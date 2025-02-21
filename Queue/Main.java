@@ -1,4 +1,5 @@
 // "static void main" must be defined in a public class.
+import java.util.*;
 
 class MyQueue {
     // store elements
