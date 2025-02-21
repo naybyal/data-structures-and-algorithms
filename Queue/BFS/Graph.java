@@ -31,7 +31,7 @@ class Graph {
             int vertex = queue.poll(); // Dequeue a vertex
             System.out.print(vertex + " "); 
 
-            // Enqueue all adjacent vertices (neighbours) that haven't been visited
+            // Enqueue all adjacent vertices (neighbours) that are unvisited
             for (int adjVertex : adjList[vertex]) {
                 if (!visited[adjVertex]) {
                     visited[adjVertex] = true;
